@@ -5,6 +5,8 @@ use regex::Regex;
 use serde::Serialize;
 use std::time::{SystemTime, UNIX_EPOCH};
 use actix_web_prom::PrometheusMetricsBuilder;
+use tracing::{info, debug, Level};
+use tracing_subscriber::FmtSubscriber;
 
 
 // Health endpoint JSON
@@ -102,6 +104,27 @@ async fn redact(input_text: web::Json<String>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let logging_level = std::env::var("REDACTR_LOGGING_LEVEL").unwrap_or("info".to_string());
+    let max_level = match logging_level.as_str() {
+        "trace" => Level::TRACE,
+        "debug" => Level::DEBUG,
+        "info" => Level::INFO,
+        "warn" => Level::WARN,
+        "error" => Level::ERROR,
+        _ => Level::INFO,
+    };
+    let address = "127.0.0.1";
+    let port = "8080";
+    let bind_address = format!("{}:{}", address, port);
+    // Initialize logging
+    let subscriber = FmtSubscriber::builder()
+        .with_max_level(max_level)
+        .finish();
+    tracing::subscriber::set_global_default(subscriber).expect("Unable to set global default"); 
+    info!("Starting the redactr service");
+    debug!("Binding to address: {}", bind_address);
+    info!(address = %address, port = %port, "Listening for requests");
+
     let prometheus = PrometheusMetricsBuilder::new("redactr")
         .endpoint("/metrics")
         .build()
@@ -114,7 +137,7 @@ async fn main() -> std::io::Result<()> {
         .service(web::resource("/redact").route(web::post().to(redact)))
         .service(web::resource("/health").route(web::get().to(health)))
     })
-    .bind("127.0.0.1:8080")?
+    .bind(bind_address)?
     .run()
     .await
 }

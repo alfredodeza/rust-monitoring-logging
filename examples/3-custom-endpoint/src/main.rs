@@ -23,6 +23,12 @@ struct HealthStatus {
 }
 
 async fn health() -> impl Responder {
+    // implement a file-based health check
+    // Return a 500 if a file exists
+    if std::path::Path::new("error.txt").exists() {
+        return HttpResponse::InternalServerError().finish();
+    }
+     
     let mut checks = vec![];
 
     // Check container uptime
