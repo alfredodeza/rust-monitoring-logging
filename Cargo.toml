@@ -13,6 +13,8 @@ serde = { version = "1.0", features = ["derive"] }
 actix-web = "4.0"
 psutil = "3.2.2"
 actix-web-prom = "0.7.0"
+tracing = "0.1.37"
+tracing-subscriber = "0.2.0"
 
 [dev-dependencies]
 pretty_assertions = "1.4.0"
