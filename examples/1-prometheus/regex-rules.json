@@ -1,0 +1,197 @@
+[
+    [
+        "\\b[0-9]{3}-[0-9]{2}-[0-9]{4}\\b",
+        "SSN",
+        "Standard SSN format"
+    ],
+    [
+        "\\b[0-9]{3}\\-[0-9]{2}\\-[0-9]{4}\\b",
+        "SSN", 
+        "SSN with dashes"
+    ],
+    [
+        "\\b[0-9]{3} [0-9]{2} [0-9]{4}\\b",
+        "SSN",
+        "SSN with spaces" 
+    ],
+    [
+        "\\b[0-9]{3}\\.[0-9]{2}\\.[0-9]{4}\\b",
+        "SSN",
+        "SSN with periods"
+    ],
+    [
+        "\\b[0-9]{9}\\b",
+        "SSN",
+        "SSN without separators"
+    ],
+    [
+        "\\b[0-9]{4}-[0-9]{4}-[0-9]{4}\\b",
+        "CC",
+        "Standard credit card format"
+    ],
+    [
+        "\\b[0-9]{4}\\-[0-9]{4}\\-[0-9]{4}\\b",
+        "CC",
+        "Credit card with dashes"
+    ],
+    [
+        "\\b[0-9]{4} [0-9]{4} [0-9]{4}\\b",
+        "CC",
+        "Credit card with spaces"
+    ],
+    [
+        "\\b[0-9]{4}\\.[0-9]{4}\\.[0-9]{4}\\b",
+        "CC",
+        "Credit card with periods" 
+    ],
+    [
+        "\\b[0-9]{12}\\b",
+        "CC",
+        "Credit card without separators"
+    ],
+    [
+        "\\b[0-9]{4}-[0-9]{6}-[0-9]{5}\\b",
+        "CC",
+        "American Express format"
+    ],
+    [
+        "\\b[0-9]{4}\\-[0-9]{6}\\-[0-9]{5}\\b",
+        "CC",
+        "American Express with dashes"
+    ],
+    [
+        "\\b[0-9]{4} [0-9]{6} [0-9]{5}\\b",
+        "CC",
+        "American Express with spaces"
+    ],
+    [
+        "\\b[0-9]{15}\\b",
+        "CC", 
+        "American Express without separators"
+    ],
+    [
+        "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Standard email format"
+    ],
+    [
+        "\\b[_A-Za-z0-9.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Allow underscores in username"
+    ],
+    [
+        "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Allow numbers in domain name"
+    ],
+    [
+        "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+-[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Allow dash in domain name"
+    ],
+    [
+        "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Allow + sign in username"
+    ],
+    [
+        "\\b[A-Za-z0-9._%+'+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+        "Email",
+        "Allow apostrophe in username"
+    ],
+    [   
+        "\\b[0-9]{3}-[0-9]{3}-[0-9]{4}\\b",
+        "Phone",
+        "Standard phone number format"  
+    ],
+    [
+        "\\b[0-9]{3} [0-9]{3} [0-9]{4}\\b",
+        "Phone",
+        "Phone number with spaces"
+    ],
+    [
+        "\\b[0-9]{3}\\.[0-9]{3}\\.[0-9]{4}\\b",
+        "Phone",
+        "Phone number with dots"
+    ],
+    [
+        "\\b([0-9]{3}) ([0-9]{3}) ([0-9]{4})\\b",
+        "Phone",
+        "Phone number with parentheses"
+    ],
+    [
+        "\\b[0-9]{10}\\b",
+        "Phone",
+        "Phone number without separators"
+    ],
+    [
+        "\\b[0-9]{3}-[0-9]{3}-[0-9]{4}\\b",
+        "Phone",
+        "Allow dash in area code"
+    ],
+    [
+        "\\b([0-9]{3})[0-9]{3}-[0-9]{4}\\b",
+        "Phone",
+        "Allow parantheses in area code"
+    ],
+    [
+        "\\b[0-9]{3}-?[0-9]{3}-?[0-9]{4}\\b",
+        "Phone",
+        "Dashes allowed between any digits"
+    ],
+    [
+        "\\b[0-9]{3}-?[0-9]{3}-[0-9]{4}\\b",
+        "Phone",
+        "Dashes allowed in area code"
+    ],
+    [
+        "\\b[0-9]{3}-[0-9]{3}-?[0-9]{4}\\b",
+        "Phone",
+        "Dashes allowed in local number"
+    ],
+    [
+        "\\b[0-9]{3}-?[0-9]{3}-?[0-9]{4}\\b",
+        "Phone",
+        "Dashes allowed in both area code and local"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+, [A-Za-z]+(?: [A-Za-z]+)?, [A-Z]{2}\\b",
+        "Address",
+        "Address with city and state"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+, [A-Za-z]+(?: [A-Za-z]+)?, [A-Z]{2} [0-9]{5}\\b",
+        "Address",
+        "Address with street, city, state zip"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+\\b",
+        "Address",
+        "Simple street address"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+ (St|Rd|Ave|Blvd)\\b",
+        "Address",
+        "Street address with street type"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+, [A-Za-z]+, [A-Z]{2} [0-9]{5}\\b",
+        "Address",
+        "Full address with street, city, state zip"
+    ],
+    [
+        "\\b[0-9]+ [A-Za-z0-9\\s]+, (St|Rd|Ave|Blvd|Ct|Cir|Wy|Pkwy|Street|Road|Avenue|Boulevard|Court|Circle|Way|Parkway)",
+        "Address",
+        "Mix of abbreviations and full street names"
+    ],
+    [
+        "\\b(PO Box|P\\.O\\. Box) [0-9]+\\b",
+        "Address",
+        "Allow PO Boxes"
+    ],
+    [
+        "\\b[A-Z][a-z]{1,15}\\s[A-Z][a-z]{1,15}\\b",
+        "Person",
+        "First and last name"
+    ]
+]
