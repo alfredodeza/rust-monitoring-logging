@@ -14,7 +14,7 @@ This repository is part of the Rust for DevOps course:
 
 ## Example project: Redact Personal Identifiable information as a service
 
-This is a simple microservice that will accept a JSON string as input to the `/redact` endpoint and return a JSON string with the PII redacted based on regular expressions stored as JSON.
+This example project will allow you to explore how to add and enable different logging and monitoring tecnhiques to a Rust project. The simple microservice accepts a JSON string as input to the `/redact` endpoint and return a JSON string with the PII redacted based on regular expressions stored as JSON.
 
 This project is part of a course on Rust For DevOps which will teach you how to use Rust while you learn DevOps principles like logging, testing, monitoring, automation, CI/CD, containers, and deployment.
 
