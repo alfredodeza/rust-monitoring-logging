@@ -1,4 +1,4 @@
-# [![Coursera Course](./assets/banner.svg)](https://insight.paiml.com/nvd?utm_source=GitHub "Coursera Course")
+# [![Coursera Course](./assets/banner.svg)](https://insight.paiml.com/prr?utm_source=GitHub "Coursera Course")
 
 # Rust Monitoring and Logging
 
