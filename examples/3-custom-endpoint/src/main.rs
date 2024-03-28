@@ -1,11 +1,10 @@
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web_prom::PrometheusMetricsBuilder;
 use psutil::memory;
 use redactr::load_rule_configs;
 use regex::Regex;
 use serde::Serialize;
-use std::time::{SystemTime, UNIX_EPOCH};
-use actix_web_prom::PrometheusMetricsBuilder;
-
+use uptime_lib;
 
 // Health endpoint JSON
 #[derive(Serialize)]
@@ -28,14 +27,11 @@ async fn health() -> impl Responder {
     if std::path::Path::new("error.txt").exists() {
         return HttpResponse::InternalServerError().finish();
     }
-     
+
     let mut checks = vec![];
 
     // Check container uptime
-    let uptime = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_secs();
+    let uptime = uptime_lib::get().unwrap().as_secs();
     checks.push(HealthCheck {
         name: "Container uptime".to_string(),
         status: format!("{} seconds", uptime),
@@ -114,11 +110,11 @@ async fn main() -> std::io::Result<()> {
         .unwrap();
 
     HttpServer::new(move || {
-        App::new()      
-        .wrap(prometheus.clone())
-        .service(web::resource("/").route(web::get().to(index)))
-        .service(web::resource("/redact").route(web::post().to(redact)))
-        .service(web::resource("/health").route(web::get().to(health)))
+        App::new()
+            .wrap(prometheus.clone())
+            .service(web::resource("/").route(web::get().to(index)))
+            .service(web::resource("/redact").route(web::post().to(redact)))
+            .service(web::resource("/health").route(web::get().to(health)))
     })
     .bind("127.0.0.1:8080")?
     .run()

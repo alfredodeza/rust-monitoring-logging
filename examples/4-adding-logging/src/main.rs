@@ -3,10 +3,11 @@ use psutil::memory;
 use redactr::load_rule_configs;
 use regex::Regex;
 use serde::Serialize;
-use std::time::{SystemTime, UNIX_EPOCH};
 use actix_web_prom::PrometheusMetricsBuilder;
 use tracing::{info, debug, Level};
 use tracing_subscriber::FmtSubscriber;
+use uptime_lib;
+
 
 
 // Health endpoint JSON
@@ -28,10 +29,7 @@ async fn health() -> impl Responder {
     let mut checks = vec![];
 
     // Check container uptime
-    let uptime = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_secs();
+    let uptime = uptime_lib::get().unwrap().as_secs();
     checks.push(HealthCheck {
         name: "Container uptime".to_string(),
         status: format!("{} seconds", uptime),
